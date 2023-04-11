@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
     render({ :template => "calculation_templates/square_form.html.erb"})
   end
 
+  def calculate_square
+    #params = {"elephant"=>"42"}
+    @num = params.fetch("elephant").to_i
+    @square_of_num = @num ** 2
+    render({ :template => "calculation_templates/square_results.html.erb"})
+  end
+
   def blank_square_root_form
     render({ :template => "calculation_templates/square_root_form.html.erb"})
   end
