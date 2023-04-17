@@ -26,6 +26,19 @@ class ApplicationController < ActionController::Base
   end
 
   def payment_results
+    @apr = (params.fetch("apple").to_f * 100).round(2)
+    @num_of_years = params.fetch("orange").to_f
     render({ :template => "calculation_templates/payment_results.html.erb"})
+  end
+
+  def random_form
+  render({ :template => "calculation_templates/random_form.html.erb"})
+  end
+
+  def random_results
+  @min_value = params.fetch("user_min").to_f
+  @max_value = params.fetch("user_max").to_f
+  @random_num = rand(@min_value..@max_value)
+  render({ :template => "calculation_templates/random_results.html.erb"})
   end
 end
